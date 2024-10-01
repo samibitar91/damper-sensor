@@ -31,10 +31,10 @@ if uploaded_file is not None:
     st.dataframe(df)
 
     # Numerical input sliders
-    n1_L = st.slider('n1_L', min_value=0.001, max_value=1.0, value=0.001, step=0.001)
+    n1_L = st.slider('n1_L', min_value=0.001, max_value=1.0, value=0.001, step=0.001, , format="%.3f")
     
     # Set n1_H slider to vary between n1_L and 1.0
-    n1_H = st.slider('n1_H', min_value=n1_L, max_value=1.0, value=n1_L, step=0.001)
+    n1_H = st.slider('n1_H', min_value=n1_L, max_value=1.0, value=n1_L, step=0.001, , format="%.3f")
 
     # Calculate the maximum allowed value for H_1 based on n1_L and n1_H
     max_H1 = min(n1_H - n1_L, (n1_H - n1_L) / 2)
