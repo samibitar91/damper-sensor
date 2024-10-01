@@ -30,17 +30,20 @@ if uploaded_file is not None:
     st.write("**Interpolated Time Series Data:**")
     st.dataframe(df)
 
-    # Numerical input sliders
+    # Numerical input sliders with 3 decimal place precision
     n1_L = st.slider('n1_L', min_value=0.001, max_value=1.0, value=0.001, step=0.001, format="%.3f")
     
-    # Set n1_H slider to vary between n1_L and 1.0
+    # Set n1_H slider to vary between n1_L and 1.0, ensuring 3 decimal place precision
     n1_H = st.slider('n1_H', min_value=n1_L + 0.001, max_value=1.0, value=n1_L + 0.001, step=0.001, format="%.3f")
 
     # Calculate the maximum allowed value for H_1 based on n1_L and n1_H
     max_H1 = min(n1_H - n1_L, (n1_H - n1_L) / 2)
 
-    # Set H_1 slider to vary between 0 and the calculated max_H1
-    H_1 = st.slider('H_1', min_value=0.0, max_value=max_H1, value=0.0, step=0.001)
+    # Display H_1 slider between 0 and 1, but internally scale it based on max_H1
+    normalized_H_1 = st.slider('H_1 (scaled)', min_value=0.0, max_value=1.0, value=0.0, step=0.001, format="%.3f")
+
+    # Scale the value of H_1 based on the maximum allowed value
+    H_1 = normalized_H_1 * max_H1
 
     # Calculate Lower OFF Region and Upper OFF Region
     lower_off_region = n1_L + H_1
