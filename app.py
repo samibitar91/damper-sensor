@@ -11,7 +11,7 @@ uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
 if uploaded_file is not None:
     # Read the CSV file into a DataFrame
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv(uploaded_file, sep=';')
 
     # Ensure the "Zeit" column is treated as the time axis (in seconds)
     if 'Zeit' in df.columns:
