@@ -17,6 +17,11 @@ if uploaded_file is not None:
     if 'Zeit' in df.columns:
         df['Zeit'] = pd.to_numeric(df['Zeit'], errors='coerce')
 
+    # Convert all other columns to numeric, ignoring errors
+    for column in df.columns:
+        if column != 'Zeit':  # We already converted 'Zeit'
+            df[column] = pd.to_numeric(df[column], errors='coerce')
+
     # Fill NaN or zero values in columns with linear interpolation
     df.replace(0, np.nan, inplace=True)  # Replace zeros with NaN to allow interpolation
     df.interpolate(method='linear', inplace=True)  # Perform linear interpolation
