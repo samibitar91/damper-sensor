@@ -82,12 +82,7 @@ if uploaded_file is not None:
         ax.axvline(x=upper_off_region, color='orange', linestyle='--', label='Upper OFF Region')
 
     # Labeling the plot
-    ax.set_xlabel('Values')
-    ax.set_ylabel('Time Series Data')
-    ax.set_title('Time Series with Vertical Lines')
-
-    # Add legend
-    ax.legend()
+    ax.set_xlabel('Pressure')
 
     # Display the plot
     st.pyplot(fig)
