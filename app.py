@@ -9,8 +9,8 @@ if output == 'Normal':
 
     # Sliders for P1_L, P1_H, H1
     P1_L = st.slider("P1_L", min_value=0.0, max_value=1.0, step=0.001, format="%.3f")
-    max_H1 = min(P1_L, 1 - P1_H)
     P1_H = st.slider("P1_H", min_value=P1_L, max_value=1.0, step=0.001, format="%.3f")
+    max_H1 = min(P1_L, 1 - P1_H)
     H1 = st.slider("H1", min_value=0.0, max_value=(P1_H - P1_L), step=0.001, format="%.3f")
 
 
