@@ -57,5 +57,13 @@ elif output == 'Reversed':
     ax.axhline(Lower_OFF, color='red', linestyle='--', label='Lower OFF Region')
     ax.axhline(Upper_OFF, color='orange', linestyle='--', label='Upper OFF Region')
     ax.legend()
+    # Customize the y-axis with more tick marks
+    fig.update_layout(
+        yaxis=dict(
+            dtick=0.05,  # Adds ticks every 0.05 units
+            tickformat=".3f",  # Optional: format to 3 decimal places
+            range=[0, 1]  # Adjust the range if necessary
+        )
+    )
 
     st.pyplot(fig)
