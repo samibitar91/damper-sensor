@@ -8,10 +8,12 @@ if output == 'Normal':
     st.write("Normal Mode")
 
     # Sliders for P1_L, P1_H, H1
-    P1_L = st.slider('P1_L', 0.0, 1.0, 0.2, 0.001)
-    P1_H = st.slider('P1_H', P1_L, 1.0, 0.8, 0.001)
+    P1_L = st.slider("P1_L", min_value=0.0, max_value=1.0, step=0.001, format="%.3f")
     max_H1 = min(P1_L, 1 - P1_H)
-    H1 = st.slider('H1', 0.0, max_H1, 0.05, 0.001)
+    P1_H = st.slider("P1_H", min_value=P1_L, max_value=1.0, step=0.001, format="%.3f")
+    H1 = st.slider("H1", min_value=0.0, max_value=(P1_H - P1_L), step=0.001, format="%.3f")
+
+
 
     # Calculating Lower and Upper ON Regions
     Lower_ON = P1_L - H1
@@ -35,10 +37,10 @@ elif output == 'Reversed':
     st.write("Reversed Mode")
 
     # Sliders for n1_L, n1_H, H1
-    n1_L = st.slider('n1_L', 0.0, 1.0, 0.2, 0.001)
+    n1_L = st.slider('n1_L', 0.0, 1.0, 0.2, 0.001, format="%.3f")
     max_H1 = (1 - n1_L) / 2
-    H1 = st.slider('H1', 0.0, max_H1, 0.05, 0.001)
-    n1_H = st.slider('n1_H', n1_L + 2*H1, 1.0, 0.8, 0.001)
+    H1 = st.slider('H1', 0.0, max_H1, 0.05, 0.001, format="%.3f")
+    n1_H = st.slider('n1_H', n1_L + 2*H1, 1.0, 0.8, 0.001, format="%.3f")
 
     # Calculating Lower and Upper OFF Regions
     Lower_OFF = n1_L + H1
